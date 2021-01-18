@@ -1,0 +1,385 @@
+/*选择一个更新的CSS框模型，它将正确地设置元素的宽度和高度*/
+html {
+    box-sizing: border-box;
+    border-top: 4px solid gray;
+    border-radius: 3px;
+}
+
+​
+
+/* 将此设置传递给页面上的所有其他元素和伪元素*/
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+​ html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+​ body {
+    position: absolute;
+
+}
+
+​
+
+/* 在整个应用程序中使用操作系统的默认字体 */
+body,
+input {
+    font: menu;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 100vw;
+    position: relative;
+}
+
+/* 使用Flexbox对齐应用程序的两个窗格*/
+.content {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    height: 435px;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+}
+
+.navi {
+    width: 100px;
+    background-color: #2c2c2c;
+    z-index: 100;
+}
+
+/*add new for tabbar*/
+.titlebar {
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+}
+
+
+
+.topbar {
+    height: 45px;
+    width: auto;
+    background-color: #E4E4E4;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 220px;
+}
+
+.min_max_close {
+    display: flex;
+    justify-content: space-around;
+    width: 80px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    margin-left: 15px;
+}
+
+ul {
+    /* 清除ul标签的默认样式 */
+    width: auto;
+    /*宽度也改为自动*/
+    list-style-type: none;
+    white-space: nowrap;
+    padding: 0;
+}
+
+li {
+    position: relative;
+}
+
+
+.top li {
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.top li a {
+    /* 设置链接内容显示的格式*/
+    display: block;
+    /* 把链接显示为块元素可使整个链接区域可点击 */
+    color: white;
+    text-align: center;
+    padding: 3px;
+    overflow: hidden;
+    text-decoration: none;
+    /* 去除下划线 */
+    user-select: none;
+}
+
+.a_hover {
+    background-color: rgb(255, 255, 255);
+    color: #2c2c2c !important;
+    border-left: 4px solid #eeeeee;
+}
+
+.top li a:hover {
+    background-color: rgb(255, 255, 255);
+    color: #2c2c2c !important;
+}
+
+textarea,
+input {
+    resize: none;
+    outline: none;
+}
+
+textarea {
+    border: 0;
+    border-radius: 4px;
+    background-color: rgba(248, 248, 248, 0.98);
+    padding: 10px;
+    box-shadow: 2px 4px 6px rgb(167, 167, 167);
+}
+
+body {
+    background: #ffffff;
+}
+
+.box-content {
+    display: flex;
+    flex-direction: column;
+    width: 670px;
+    padding: 15px;
+    justify-content: flex-start;
+}
+
+.blue-button {
+    /* 按钮美化 */
+    width: 320px;
+    /* 宽度 */
+    height: 40px;
+    /* 高度 */
+    border-width: 0px;
+    /* 边框宽度 */
+    border-radius: 3px;
+    /* 边框半径 */
+    background: #4ba5ff;
+    /* 背景颜色 */
+    cursor: pointer;
+    /* 鼠标移入按钮范围时出现手势 */
+    outline: none;
+    /* 不显示轮廓线 */
+    font-family: Microsoft YaHei;
+    /* 设置字体 */
+    color: white;
+    /* 字体颜色 */
+    font-size: 17px;
+    /* 字体大小 */
+}
+
+.blue-button:hover {
+    /* 鼠标移入按钮范围时改变颜色 */
+    background: #8cbaff;
+}
+
+.blue-button:disabled {
+    background: rgb(167, 167, 167);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 800px;
+    height: 32px;
+    background-color: #7a9ec2;
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    line-height: 30px;
+    color: #fff;
+    font-size: 13px;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.password {
+    width: 610px;
+    margin-top: 10px;
+}
+
+label {
+    user-select: none;
+}
+
+input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 4px;
+    height: 25px;
+    border-color: #44d3ff;
+}
+
+/* 遮罩 */
+#overlay {
+    background: #000;
+    filter: alpha(opacity=50);
+    /* IE的透明度 */
+    opacity: 0.5;
+    /* 透明度 */
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 900;
+    /* 此处的图层要大于页面 */
+    display: none;
+}
+
+#msg {
+    width: 100px;
+    height: 100px;
+    /* background-color: red; */
+    top: 20%;
+    left: 35%;
+    position: absolute;
+    display: none;
+    z-index: 999;
+    /* 此处的图层要遮盖层 */
+    color: rgb(255, 255, 255)
+}
+
+.scene {
+    width: 300px;
+    height: 300px;
+    -webkit-perspective: 600;
+    perspective: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font: 14px/21px Monaco, sans-serif;
+    z-index: 999;
+}
+
+.scene svg {
+    width: 240px;
+    height: 240px;
+}
+
+.dc-logo {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+
+.dc-logo:hover svg {
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-animation: arrow-spin 2.5s 0s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+    animation: arrow-spin 2.5s 0s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+}
+
+.dc-logo:hover:hover:before {
+    content: '\2764';
+    padding: 6px;
+    font: 10px/1 Monaco, sans-serif;
+    font-size: 10px;
+    color: #00fffe;
+    text-transform: uppercase;
+    position: absolute;
+    left: -70px;
+    top: -30px;
+    white-space: nowrap;
+    z-index: 20px;
+    box-shadow: 0px 0px 4px #222;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.dc-logo:hover:hover:after {
+    content: 'Digital Craft';
+    padding: 6px;
+    font: 10px/1 Monaco, sans-serif;
+    font-size: 10px;
+    color: #6E6F71;
+    text-transform: uppercase;
+    position: absolute;
+    right: 0;
+    top: -30px;
+    white-space: nowrap;
+    z-index: 20px;
+    box-shadow: 0px 0px 4px #222;
+    background: rgba(0, 0, 0, 0.4);
+    background-image: none;
+}
+
+@-webkit-keyframes arrow-spin {
+    50% {
+        -webkit-transform: rotateY(360deg);
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes arrow-spin {
+    50% {
+        -webkit-transform: rotateY(360deg);
+        transform: rotateY(360deg);
+    }
+}
+
+.title {
+    font-weight: 900;
+    padding-bottom:10px;
+    width:90px;
+    border-bottom:4px solid rgb(95, 95, 95);
+    z-index:10;
+    user-select: none;
+    height:20px;
+}
+
+.title::after {
+    content: attr(data-title);
+    position: relative;
+    margin-left:5px;
+    opacity:0.6;
+    top: -15px;
+    z-index:9;
+    color: #c6e5ff;
+    filter: blur(1px);
+}
+
+.tx-c {
+    padding-top:5px;
+    color:rgb(97, 97, 97);
+    font-size:small;
+    font-family: STXihei, "Microsoft YaHei";
+
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>RSA Algorithm</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <div id='msg'>
+        <div class="scene">
+            <svg version="1.1" id="dc-spinner" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width:"38" height:"38"
+                viewBox="0 0 38 38" preserveAspectRatio="xMinYMin meet">
+                <text x="8" y="21" font-family="Monaco" font-size="4px" font-weight="600" style="letter-spacing:0.6"
+                    fill="white">LOADING
+                    <animate attributeName="opacity" values="0;1;0" dur="1.8s" repeatCount="indefinite">
+                </text>
+                <path fill="#373a42" d="M20,35c-8.271,0-15-6.729-15-15S11.729,5,20,5s15,6.729,15,15S28.271,35,20,35z M20,5.203
+              C11.841,5.203,5.203,11.841,5.203,20c0,8.159,6.638,14.797,14.797,14.797S34.797,28.159,34.797,20
+              C34.797,11.841,28.159,5.203,20,5.203z">
+                </path>
+
+                <path fill="#373a42" d="M20,33.125c-7.237,0-13.125-5.888-13.125-13.125S12.763,6.875,20,6.875S33.125,12.763,33.125,20
+              S27.237,33.125,20,33.125z M20,7.078C12.875,7.078,7.078,12.875,7.078,20c0,7.125,5.797,12.922,12.922,12.922
+              S32.922,27.125,32.922,20C32.922,12.875,27.125,7.078,20,7.078z">
+                </path>
+
+                <path fill="#2AA198" stroke="#2AA198" stroke-width="0.6027" stroke-miterlimit="10"
+                    d="M5.203,20
+                      c0-8.159,6.638-14.797,14.797-14.797V5C11.729,5,5,11.729,5,20s6.729,15,15,15v-0.203C11.841,34.797,5.203,28.159,5.203,20z">
+                    <animateTransform attributeName="transform" type="rotate" from="0 20 20" to="360 20 20"
+                        calcMode="spline" keySplines="0.4, 0, 0.2, 1" keyTimes="0;1" dur="2s"
+                        repeatCount="indefinite" />
+                </path>
+
+                <path fill="#859900" stroke="#859900" stroke-width="0.2027" stroke-miterlimit="10" d="M7.078,20
+            c0-7.125,5.797-12.922,12.922-12.922V6.875C12.763,6.875,6.875,12.763,6.875,20S12.763,33.125,20,33.125v-0.203
+            C12.875,32.922,7.078,27.125,7.078,20z">
+                    <animateTransform attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="1.8s"
+                        repeatCount="indefinite" />
+                </path>
+            </svg>
+        </div>
+    </div>
+    <div class="topbar" style="-webkit-app-region: drag;-webkit-user-select: none;">
+        <div class="logo fl">
+            <img src="images/logo.png" style="height:30px;width:30px;" alt="">
+            <span style="font-weight: bold;font-size:18px;width: 150px;">RSA加密软件</span>
+        </div>
+
+
+        <div class="min_max_close fr" style="-webkit-app-region: no-drag;">
+            <img src="images/min.png" id="min" style="height:14px;width:14px;" alt="">
+            <img src="images/max.png" id="max" style="height:14px;width:14px;pointer-events:none" alt="">
+            <img src="images/close.png" id="close" style="height:14px;width:14px;" alt="">
+        </div>
+    </div>
+    <div class="content">
+        <div class="navi">
+            <div class="top">
+                <ul>
+                    <li><a id="home" class="a_hover" disabled>主页</a></li>
+                    <li><a id="encrypt" disabled>加密</a></li>
+                    <li><a id="decrypt" disabled>解密</a></li>
+                    <li><a id="other" disabled>待开发</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="home_c" class="box-content">
+            <div style="border-bottom:1px solid black;z-index:0;"><div data-title="应用简介：" class="title">应用简介：</div> </div>
+            <div class="tx-c">本应用前端使用electron框架 jquery库(js + css + html)开发<br/>
+                Electron 是一个使用 JavaScript, HTML 和 CSS 等 Web 技术创建原生程序的框架<br/>
+                算法使用C语言开发,可以实现文件加解密等功能<br/>
+                
+            </div>
+            <div style="border-bottom:1px solid black;z-index:0;margin-top:10px;">
+                <div data-title="使用方法：" class="title">使用方法：</div>  
+            </div>
+            <ul class="tx-c">
+                <li>1.加密时点击选择文件按钮，然后点击开始加密，然后等待加密过程完成即可</li>
+                <li>2.加密完成后会在result目录下生成密文文件和公钥私钥</li>
+                <li>3.密文文件和公钥私钥并分别命名为Out.Bin，public_key.pem，private_key.pem</li>
+                <li>4.解密时点击选择文件按钮，然后点击加载密钥，接着点击加载密钥，然后点击开始解密，最后等待解密过程完成即可</li>
+                <li>5.解密完成后点击保存到文件，将解密后的信息另存于指定文件</li>
+            </ul>
+            <div style="border-bottom:1px solid black;z-index:0;"><div data-title="注意事项：" class="title">注意事项：</div> </div>
+            <ul class="tx-c">
+                <li>1.请勿手动删除或修改result目录下的公钥与私钥文件内容，否则会导致无法解密</li>
+                <li>2.加密一些较大文件时可能会花费较长时间请耐心等待</li>
+                <li>3.……</li>
+            </ul>
+        </div>
+        <div id="encrypt_c" style="display:none;" class="box-content">
+            <!-- <label for="file-Content">文件内容：</label> -->
+            <textarea readonly spellcheck="false" maxlength="1000" placeholder="输入文件内容" name="fileContent"
+                id="file-Content" style="width:auto;" rows="15" value=""></textarea>
+            <div style="display:flex;flex-direction: row;padding-top:15px;justify-content:space-between;">
+                <button id="open-file" class="blue-button">
+                    选择要加密的文件
+                </button>
+                <button id='open-explorer' class="blue-button" disabled>在资源管理器中打开</button>
+            </div>
+
+            <div style="display:flex;flex-direction: row;padding-top:15px;justify-content:space-between;">
+                <button id="begin-decrypt" class="blue-button" disabled>开始加密</button>
+                <button id="load-password" class="blue-button" disabled>加载密钥</button>
+            </div>
+            <!-- <form action="">
+                <label for="password" style="color:#006381">密钥：</label>
+                <input id="password" maxlength="8" class="password" type="password" oninput="demo(this)"
+                    placeholder="输入密钥" />
+                <span id="tishi" style="user-select: none;margin-left:-45px;width:100px;text-align:right">0/8</span>
+            </form> -->
+            <!-- <div style="width:200px;text-align:right;">helloworld</div> -->
+        </div>
+        <div id="decrypt_c" style="display:none" class="box-content">
+            <div style="display:flex;flex-direction: row;padding-top:15px;justify-content:space-between;">
+                <button id='open-file' class="blue-button">选择要解密的文件</button>
+                <button id='save-file' class="blue-button" disabled>保存到文件</button>
+            </div>
+            <div style="display:flex;flex-direction: row;padding-top:15px;justify-content:space-between;">
+                <button id='load-key' class="blue-button" disabled>加载密钥</button>
+                <button id='start-decrypt' class="blue-button" disabled>开始解密</button>
+            </div>
+            <textarea readonly spellcheck="false" maxlength="1000" placeholder="解密信息" name="fileContent"
+                id="plain-Content" style="width:auto;margin-top:15px;" rows="15" value=""></textarea>
+            <!-- <form action="">
+                <label for="password" style="color:#006381">密钥：</label>
+                <input id="password" maxlength="8" class="password" type="password" oninput="demo(this)"
+                    placeholder="输入密钥" />
+                <span id="tishi" style="user-select: none;margin-left:-45px;width:100px;text-align:right">0/8</span>
+            </form> -->
+        </div>
+        <div id="other_c" style="display:none" class="box-content">
+            功能待开发......
+        </div>
+        <footer>
+            <div style="width:100px;"></div>
+
+            <div id="filename" style="width:590px;border-right:2px solid rgb(255, 255, 255);padding-left: 10px;">
+                当前文件：尚未选择</div>
+            <div id="status" style="padding-left: 10px;">等待中</div>
+        </footer>
+
+    </div>
+</body>
+<script>
+    function demo(a) {
+        document.getElementById("tishi").innerHTML = String(a.value.length).concat('/8');
+    }
+
+</script>
+<script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="js/navBar.js"></script>
+<script src="renderer.js"></script>
+
+</html>
